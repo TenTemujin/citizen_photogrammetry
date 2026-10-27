@@ -1,0 +1,682 @@
+{
+  "directed": false,
+  "multigraph": false,
+  "graph": {
+    "hyperedges": [
+      {
+        "id": "open_data_sources",
+        "label": "Open data sources feeding the pipeline",
+        "nodes": [
+          "implementation_plan_osm_overture_data",
+          "implementation_plan_mapillary_imagery",
+          "implementation_plan_helsinki_reality_mesh"
+        ],
+        "relation": "form",
+        "confidence": "INFERRED",
+        "confidence_score": 0.75,
+        "source_file": "implementation_plan.md"
+      }
+    ]
+  },
+  "nodes": [
+    {
+      "label": "coverage.py",
+      "file_type": "code",
+      "source_file": "pipeline/coverage.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "pipeline_coverage",
+      "community": 0,
+      "norm_label": "coverage.py"
+    },
+    {
+      "label": "http_json()",
+      "file_type": "code",
+      "source_file": "pipeline/coverage.py",
+      "source_location": "L23",
+      "_origin": "ast",
+      "id": "pipeline_coverage_http_json",
+      "community": 0,
+      "norm_label": "http_json()"
+    },
+    {
+      "label": "osm_buildings()",
+      "file_type": "code",
+      "source_file": "pipeline/coverage.py",
+      "source_location": "L29",
+      "_origin": "ast",
+      "id": "pipeline_coverage_osm_buildings",
+      "community": 0,
+      "norm_label": "osm_buildings()"
+    },
+    {
+      "label": "frange()",
+      "file_type": "code",
+      "source_file": "pipeline/coverage.py",
+      "source_location": "L36",
+      "_origin": "ast",
+      "id": "pipeline_coverage_frange",
+      "community": 0,
+      "norm_label": "frange()"
+    },
+    {
+      "label": "mapillary_tiles()",
+      "file_type": "code",
+      "source_file": "pipeline/coverage.py",
+      "source_location": "L42",
+      "_origin": "ast",
+      "id": "pipeline_coverage_mapillary_tiles",
+      "community": 0,
+      "norm_label": "mapillary_tiles()"
+    },
+    {
+      "label": "main()",
+      "file_type": "code",
+      "source_file": "pipeline/coverage.py",
+      "source_location": "L56",
+      "_origin": "ast",
+      "id": "pipeline_coverage_main",
+      "community": 0,
+      "norm_label": "main()"
+    },
+    {
+      "label": "Implementation Plan",
+      "file_type": "document",
+      "source_file": "implementation_plan.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "implementation_plan",
+      "community": 1,
+      "norm_label": "implementation plan"
+    },
+    {
+      "label": "README",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "readme",
+      "community": 1,
+      "norm_label": "readme"
+    },
+    {
+      "label": "Citizen Photogrammetry project",
+      "file_type": "concept",
+      "source_file": "README.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "readme_citizen_photogrammetry",
+      "community": 1,
+      "norm_label": "citizen photogrammetry project"
+    },
+    {
+      "label": "Quick start: coverage.py",
+      "file_type": "concept",
+      "source_file": "README.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "readme_quick_start_coverage",
+      "community": 0,
+      "norm_label": "quick start: coverage.py"
+    },
+    {
+      "label": "Ship code, not data",
+      "file_type": "rationale",
+      "source_file": "implementation_plan.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "implementation_plan_ship_code_not_data",
+      "community": 1,
+      "norm_label": "ship code, not data"
+    },
+    {
+      "label": "Licensing constraints",
+      "file_type": "concept",
+      "source_file": "implementation_plan.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "implementation_plan_licensing_constraints",
+      "community": 1,
+      "norm_label": "licensing constraints"
+    },
+    {
+      "label": "Google 3D Tiles (optional plugin)",
+      "file_type": "concept",
+      "source_file": "implementation_plan.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "implementation_plan_google_3d_tiles_plugin",
+      "community": 1,
+      "norm_label": "google 3d tiles (optional plugin)"
+    },
+    {
+      "label": "Open formats (3D Tiles, glTF, spz)",
+      "file_type": "concept",
+      "source_file": "implementation_plan.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "implementation_plan_open_formats",
+      "community": 3,
+      "norm_label": "open formats (3d tiles, gltf, spz)"
+    },
+    {
+      "label": "Adaptive streaming",
+      "file_type": "concept",
+      "source_file": "implementation_plan.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "implementation_plan_adaptive_streaming",
+      "community": 3,
+      "norm_label": "adaptive streaming"
+    },
+    {
+      "label": "Chunk streaming (100 m, 3 LODs)",
+      "file_type": "concept",
+      "source_file": "implementation_plan.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "implementation_plan_chunk_streaming",
+      "community": 3,
+      "norm_label": "chunk streaming (100 m, 3 lods)"
+    },
+    {
+      "label": "Per-street quality tiers A-D",
+      "file_type": "concept",
+      "source_file": "implementation_plan.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "implementation_plan_quality_tiers",
+      "community": 2,
+      "norm_label": "per-street quality tiers a-d"
+    },
+    {
+      "label": "Procedural base layer",
+      "file_type": "concept",
+      "source_file": "implementation_plan.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "implementation_plan_procedural_base_layer",
+      "community": 2,
+      "norm_label": "procedural base layer"
+    },
+    {
+      "label": "Gaussian Splatting hero street",
+      "file_type": "concept",
+      "source_file": "implementation_plan.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "implementation_plan_gaussian_splatting",
+      "community": 2,
+      "norm_label": "gaussian splatting hero street"
+    },
+    {
+      "label": "SfM (COLMAP / OpenSfM)",
+      "file_type": "concept",
+      "source_file": "implementation_plan.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "implementation_plan_sfm_colmap",
+      "community": 2,
+      "norm_label": "sfm (colmap / opensfm)"
+    },
+    {
+      "label": "Mapillary street imagery",
+      "file_type": "concept",
+      "source_file": "implementation_plan.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "implementation_plan_mapillary_imagery",
+      "community": 2,
+      "norm_label": "mapillary street imagery"
+    },
+    {
+      "label": "OSM / Overture data",
+      "file_type": "concept",
+      "source_file": "implementation_plan.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "implementation_plan_osm_overture_data",
+      "community": 2,
+      "norm_label": "osm / overture data"
+    },
+    {
+      "label": "Helsinki reality mesh",
+      "file_type": "concept",
+      "source_file": "implementation_plan.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "implementation_plan_helsinki_reality_mesh",
+      "community": 3,
+      "norm_label": "helsinki reality mesh"
+    },
+    {
+      "label": "Web client (CesiumJS)",
+      "file_type": "concept",
+      "source_file": "implementation_plan.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "implementation_plan_web_client",
+      "community": 3,
+      "norm_label": "web client (cesiumjs)"
+    },
+    {
+      "label": "Phase 0 coverage audit",
+      "file_type": "concept",
+      "source_file": "implementation_plan.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "implementation_plan_phase0_coverage_audit",
+      "community": 0,
+      "norm_label": "phase 0 coverage audit"
+    }
+  ],
+  "links": [
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "implementation_plan.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "pipeline_coverage",
+      "target": "implementation_plan_phase0_coverage_audit"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "pipeline/coverage.py",
+      "source_location": "L36",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "pipeline_coverage",
+      "target": "pipeline_coverage_frange",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "pipeline/coverage.py",
+      "source_location": "L23",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "pipeline_coverage",
+      "target": "pipeline_coverage_http_json",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "pipeline/coverage.py",
+      "source_location": "L56",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "pipeline_coverage",
+      "target": "pipeline_coverage_main",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "pipeline/coverage.py",
+      "source_location": "L42",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "pipeline_coverage",
+      "target": "pipeline_coverage_mapillary_tiles",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "pipeline/coverage.py",
+      "source_location": "L29",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "pipeline_coverage",
+      "target": "pipeline_coverage_osm_buildings",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "readme_quick_start_coverage",
+      "target": "pipeline_coverage"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "pipeline/coverage.py",
+      "source_location": "L52",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "pipeline_coverage_mapillary_tiles",
+      "target": "pipeline_coverage_http_json",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "pipeline/coverage.py",
+      "source_location": "L31",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "pipeline_coverage_osm_buildings",
+      "target": "pipeline_coverage_http_json",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "pipeline/coverage.py",
+      "source_location": "L67",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "pipeline_coverage_main",
+      "target": "pipeline_coverage_osm_buildings",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "implementation_plan.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "pipeline_coverage_osm_buildings",
+      "target": "implementation_plan_osm_overture_data"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "pipeline/coverage.py",
+      "source_location": "L44",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "pipeline_coverage_mapillary_tiles",
+      "target": "pipeline_coverage_frange",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "pipeline/coverage.py",
+      "source_location": "L75",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "pipeline_coverage_main",
+      "target": "pipeline_coverage_mapillary_tiles",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "implementation_plan.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "pipeline_coverage_mapillary_tiles",
+      "target": "implementation_plan_mapillary_imagery"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "implementation_plan.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "pipeline_coverage_main",
+      "target": "implementation_plan_quality_tiers"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "implementation_plan.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "implementation_plan",
+      "target": "implementation_plan_adaptive_streaming"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "implementation_plan.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "implementation_plan",
+      "target": "implementation_plan_licensing_constraints"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "implementation_plan.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "implementation_plan",
+      "target": "implementation_plan_quality_tiers"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "readme",
+      "target": "implementation_plan"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "readme_citizen_photogrammetry",
+      "target": "implementation_plan_ship_code_not_data"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "implementation_plan.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "implementation_plan_licensing_constraints",
+      "target": "implementation_plan_ship_code_not_data"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "implementation_plan.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "implementation_plan_licensing_constraints",
+      "target": "implementation_plan_google_3d_tiles_plugin"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "implementation_plan.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "implementation_plan_adaptive_streaming",
+      "target": "implementation_plan_open_formats"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "implementation_plan.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "implementation_plan_helsinki_reality_mesh",
+      "target": "implementation_plan_open_formats"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "implementation_plan.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "implementation_plan_chunk_streaming",
+      "target": "implementation_plan_adaptive_streaming"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "implementation_plan.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "implementation_plan_web_client",
+      "target": "implementation_plan_chunk_streaming"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "implementation_plan.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "implementation_plan_quality_tiers",
+      "target": "implementation_plan_gaussian_splatting"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "implementation_plan.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "implementation_plan_quality_tiers",
+      "target": "implementation_plan_mapillary_imagery"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "implementation_plan.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "implementation_plan_quality_tiers",
+      "target": "implementation_plan_procedural_base_layer"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "implementation_plan.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "implementation_plan_procedural_base_layer",
+      "target": "implementation_plan_osm_overture_data"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "implementation_plan.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "implementation_plan_gaussian_splatting",
+      "target": "implementation_plan_mapillary_imagery"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "implementation_plan.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "implementation_plan_gaussian_splatting",
+      "target": "implementation_plan_sfm_colmap"
+    }
+  ],
+  "hyperedges": [
+    {
+      "id": "open_data_sources",
+      "label": "Open data sources feeding the pipeline",
+      "nodes": [
+        "implementation_plan_osm_overture_data",
+        "implementation_plan_mapillary_imagery",
+        "implementation_plan_helsinki_reality_mesh"
+      ],
+      "relation": "form",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "implementation_plan.md"
+    }
+  ]
+}
