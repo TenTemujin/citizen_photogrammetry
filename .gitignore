@@ -9,3 +9,6 @@ runs/
 *.spz
 *.splat
 graphify-out/cache/
+meshes/
+run.bat
+.vscode

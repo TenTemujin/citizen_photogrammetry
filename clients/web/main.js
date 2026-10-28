@@ -1,8 +1,10 @@
 // Minimal chunk-streaming viewer: flat ground, extruded OSM footprints, no tokens needed.
 // Serve from the repo root: python -m http.server 8000, then open /clients/web/
 import * as THREE from "three";
+import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 
 const CHUNKS_URL = "../../chunks";
+const MESH_LEVEL = new URLSearchParams(location.search).get("mesh"); // ?mesh=16 shows the reality mesh (meshes/L16) instead of OSM extrusions
 const LOAD_RADIUS = 3; // chunks around the camera kept loaded; unload beyond +1
 const SPEED = 12; // m/s, hold Shift for x4
 const M_PER_DEG_LAT = 111320;
@@ -37,6 +39,34 @@ const mPerDegLon = M_PER_DEG_LAT * Math.cos((south * Math.PI) / 180);
 
 // chunk-local meters: x = east, z = -north, y = up
 const project = ([lon, lat]) => [(lon - west) * mPerDegLon, (lat - south) * M_PER_DEG_LAT];
+
+// Reality mesh tiles from pipeline/mesh_to_glb.py: already in the local frame, heights in the source datum.
+const meshTiles = [];
+let meshAttribution = "";
+if (MESH_LEVEL) {
+  const base = `../../meshes/L${MESH_LEVEL}`;
+  const mi = await (await fetch(`${base}/index.json`, { cache: "no-store" })).json();
+  meshAttribution = mi.attribution;
+  scene.remove(ground);
+  const loader = new GLTFLoader();
+  await Promise.all(mi.tiles.map(async (t) => {
+    const gltf = await loader.loadAsync(`${base}/${t.file}`);
+    scene.add(gltf.scene);
+    meshTiles.push({ root: gltf.scene, t });
+  }));
+}
+
+const down = new THREE.Vector3(0, -1, 0);
+const ray = new THREE.Raycaster();
+// height of the mesh surface under (x, z); null where no tile covers the point
+function groundY(x, z) {
+  const roots = meshTiles
+    .filter(({ t }) => x >= t.east[0] && x <= t.east[1] && -z >= t.north[0] && -z <= t.north[1])
+    .map((m) => m.root);
+  ray.set(new THREE.Vector3(x, 500, z), down);
+  const hit = ray.intersectObjects(roots, true)[0];
+  return hit ? hit.point.y : null;
+}
 
 const known = new THREE.MeshLambertMaterial({ color: 0xd8d0c4 });
 const guessed = new THREE.MeshLambertMaterial({ color: 0xa39384 }); // height from default, not OSM
@@ -124,6 +154,8 @@ function updateChunks() {
 const keys = new Set();
 let yaw = 0;
 let pitch = 0;
+let eye = 1.7; // camera height above the surface under it
+let floorY = 0;
 addEventListener("keydown", (e) => keys.add(e.code));
 addEventListener("keyup", (e) => keys.delete(e.code));
 renderer.domElement.addEventListener("click", () => renderer.domElement.requestPointerLock());
@@ -159,9 +191,11 @@ renderer.setAnimationLoop((now) => {
   const side = (keys.has("KeyD") ? 1 : 0) - (keys.has("KeyA") ? 1 : 0);
   camera.position.x += (-Math.sin(yaw) * fwd + Math.cos(yaw) * side) * v;
   camera.position.z += (-Math.cos(yaw) * fwd - Math.sin(yaw) * side) * v;
-  camera.position.y = Math.max(1.7, camera.position.y + ((keys.has("Space") ? 1 : 0) - (keys.has("KeyC") ? 1 : 0)) * v);
+  eye = Math.max(1.7, eye + ((keys.has("Space") ? 1 : 0) - (keys.has("KeyC") ? 1 : 0)) * v);
+  if (MESH_LEVEL) floorY = groundY(camera.position.x, camera.position.z) ?? floorY;
+  camera.position.y = floorY + eye;
   ground.position.set(camera.position.x, 0, camera.position.z);
-  updateChunks();
+  if (!MESH_LEVEL) updateChunks();
   renderer.render(scene, camera);
   frames++;
   if (now - fpsAt > 500) {
@@ -170,5 +204,5 @@ renderer.setAnimationLoop((now) => {
     fpsAt = now;
   }
   const live = [...loaded.values()].filter(Boolean).length;
-  hud.textContent = `fps ${fps}  chunks ${live}/${meta.chunks.length}\nclick = look, WASD move, Shift fast, Space/C up/down\n${meta.attribution}`;
+  hud.textContent = `fps ${fps}  chunks ${live}/${meta.chunks.length}\nclick = look, WASD move, Shift fast, Space/C up/down\n${meta.attribution}${meshAttribution ? `\n${meshAttribution}` : ""}`;
 });
