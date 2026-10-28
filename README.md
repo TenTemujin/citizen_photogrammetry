@@ -31,6 +31,22 @@ Measure open-data coverage for a bounding box (south, west, north, east in decim
 python pipeline/coverage.py 35.658 139.700 35.662 139.705
 ```
 
+Split OSM buildings of the same bbox into 100 m GeoJSON chunks (Phase 2 skeleton, output in `chunks/`):
+
+```
+python pipeline/chunks.py 60.1690 24.9390 60.1730 24.9450
+```
+
+View the chunks in the browser (flat ground, extruded footprints, chunks load and unload around the camera; no tokens). From the repo root:
+
+```
+python -m http.server 8000
+```
+
+Then open http://localhost:8000/clients/web/ , click to look around, WASD to move. The page loads Three.js from unpkg, so it needs internet.
+
+Run everything in one go (coverage, chunks, photo dry run) by double-clicking `run.bat`, or `python pipeline/run_all.py`. It asks for the Mapillary token with hidden input and can save it to `.env` (plain text, git-ignored). Logs, a `manifest.json` and the exported chunks go to `runs/<timestamp>/`. Pass `--download` to actually fetch the photos.
+
 Set `MAPILLARY_TOKEN` (free token at mapillary.com/developer) to also measure street-photo density. The Mapillary part is untested against the live API.
 
 ## Roadmap

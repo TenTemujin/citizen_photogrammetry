@@ -77,6 +77,12 @@ Mechanisms:
 
 Open question: large open meshes (for example Helsinki, about 243 GB as OBJ) cannot be range-requested. They must be converted to 3D Tiles and hosted as static files by someone. First check whether the city already publishes a ready tileset and consume it directly; otherwise decide on community-hosted static storage. Not yet verified.
 
+Leads from a Gemini web lookup (UNVERIFIED; a direct fetch of the URLs failed from the dev machine with curl exit 000, so check them in a browser):
+- Helsinki appears to stream its reality mesh as 3D Tiles at `https://kartta.hel.fi/3d/mesh/Helsinki_2024/tileset.json` (older: `https://kartta.hel.fi/3d/b3dm_2017_2/tileset.json`), CC BY 4.0. If confirmed, no hosting or conversion is needed.
+- Checked 2026-10-27: `kartta.hel.fi` times out both from the dev tooling and from the user's browser (Brazil). The host may be geo-restricted or unreliable, so the project must not depend on it. Treat the Helsinki tileset as an optional source and keep the HRI OBJ download as the fallback; retest from another network.
+- Berlin appears to publish textured OBJ archives only (no 3D Tiles), license dl-de/by-2.0 or dl-de/zero-2.0.
+- OBJ/CityGML to 3D Tiles converters to evaluate: py3dtiles (Apache-2.0), citygml-tools (Apache-2.0), PLATEAU GIS Converter (MIT), pg2b3dm (MIT), tyler (Apache-2.0), objTo3d-tiles (Apache-2.0). Obj2Tiles is AGPL-3.0; avoid linking it into the core.
+
 ## Per-street quality tiers (automatic degradation)
 
 1. **Tier A, dense imagery:** cluster photos, run OpenSfM or COLMAP, train a splat (or reconstruct a mesh) for the segment.

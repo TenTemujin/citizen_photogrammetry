@@ -22,8 +22,11 @@ MAPILLARY_LIMIT = 2000
 
 def http_json(url, data=None):
     req = urllib.request.Request(url, data=data, headers={"User-Agent": "citizen-photogrammetry/0.1"})
-    with urllib.request.urlopen(req, timeout=120) as r:
-        return json.load(r)
+    try:
+        with urllib.request.urlopen(req, timeout=120) as r:
+            return json.load(r)
+    except urllib.error.HTTPError as err:  # show the API's own message, not a traceback (the URL holds the token)
+        raise SystemExit(f"HTTP {err.code} from {urllib.parse.urlparse(url).netloc}: {err.read()[:300].decode('utf-8', 'replace')}")
 
 
 def osm_buildings(s, w, n, e):
@@ -77,6 +80,8 @@ def main():
     medium = sum(a.medium <= t < a.dense for t in tiles)
     sparse = len(tiles) - dense - medium
     print(f"Mapillary tiles ({TILE_DEG} deg): {len(tiles)}  A: {dense}  B: {medium}  C/D: {sparse}")
+    ordered = sorted(tiles)
+    print(f"photos per tile: min {ordered[0]}  median {ordered[len(ordered) // 2]}  max {ordered[-1]}")
     if any(t >= MAPILLARY_LIMIT for t in tiles):
         print(f"note: some tiles hit the {MAPILLARY_LIMIT}-image cap; real density is higher")
 
