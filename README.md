@@ -49,6 +49,27 @@ Run everything in one go (coverage, chunks, photo dry run) by double-clicking `r
 
 Set `MAPILLARY_TOKEN` (free token at mapillary.com/developer) to also measure street-photo density. The Mapillary part is untested against the live API.
 
+## Existing photogrammetry as the base (Helsinki)
+
+The project improves photogrammetry that already exists instead of rebuilding it. First source: the Helsinki 3D+ reality mesh (OBJ + JPG, CC BY 4.0 per the search pages; not confirmed on the city's own page, and the download used is a community mirror). Download block 672496 into `data/mesh/672496`, then:
+
+```
+python pipeline/mesh_to_glb.py data/mesh/672496 --level 16 --strip-veg --out meshes_novg
+python pipeline/mesh_to_glb.py data/mesh/672496 --level 18 --strip-veg --trees-out meshes/trees.json --out meshes_novg
+python pipeline/mesh_to_glb.py data/mesh/672496 --level 20 --strip-veg --out meshes_novg   # ~15 min, 200 MB
+python pipeline/props.py                                                                     # OSM lamps, benches, bins
+```
+
+`--strip-veg` cuts the tree canopies out of the mesh (green texture + height above the ground around) and writes one record per crown; the viewer plants trunk + crown + ground patch instead, because aerial photogrammetry turns trees into melted blobs with no ground below.
+
+Clean streets: `python pipeline/streets.py` writes a ground height model plus an OSM road/sidewalk/cycleway texture to `meshes/streets/`; then rerun the three `mesh_to_glb.py` commands with `--streets meshes/streets` to cut the lumpy street surface (and the cars melted into it) out of the mesh. The viewer drapes the clean surface over the height model.
+
+Photo-to-mesh alignment experiments (not used by the viewer yet): `pipeline/export_poses.py`, `align_global.py`, `align_to_mesh.py`. Poses end up within a few metres of the mesh, not accurate enough to project photos on facades.
+
+View it: `http://localhost:8000/clients/web/index.html?mesh=16&lod=18,20` (tiles swap to finer levels near the camera). Other parameters: `raw=1` (mesh with canopies, from `meshes/`), `trees=1` (OSM tree points), `exp=` exposure, `lift=` dark-texel lift, `albedo=`.
+
+Known limits: facades are still the melted aerial geometry; the Mapillary photos are aligned to GPS only (6-10 m median), not to the mesh; no refinement model exists yet.
+
 ## Roadmap
 
 See [implementation_plan.md](implementation_plan.md). Phases: 0 coverage audit, 1 web client, 2 procedural base layer, 3 chunk streaming, 4 imagery-based reconstruction, 5 integration and release.
